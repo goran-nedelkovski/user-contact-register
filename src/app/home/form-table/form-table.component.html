@@ -1,0 +1,56 @@
+<ul>
+  <li *ngIf="currentUser">
+    <p>Hello {{currentUser.email}}</p>
+    <p>You're logged in with Angular 2!!</p>
+    <!-- - <a (click)="deleteUser(user.id)">Delete</a> -->
+  </li>
+</ul>
+<!-- <table>
+  <tr *ngFor="let contact of contactList">
+    <td>{{contact | json}}</td>
+  </tr>
+</table> -->
+
+<mat-table #table [dataSource]="myDataArray" class="mat-elevation-z8">
+   <ng-container matColumnDef="firstName">
+     <mat-header-cell *matHeaderCellDef>firstname</mat-header-cell>
+     <mat-cell *matCellDef="let contact"><div> {{contact.firstName}} </div></mat-cell>
+   </ng-container>
+   <ng-container matColumnDef="lastName">
+     <mat-header-cell *matHeaderCellDef>lastname</mat-header-cell>
+     <mat-cell *matCellDef="let contact"><div> {{contact.lastName}} </div></mat-cell>
+   </ng-container>
+   <ng-container matColumnDef="email">
+    <mat-header-cell *matHeaderCellDef>email</mat-header-cell>
+    <mat-cell *matCellDef="let contact"><div> {{contact.email}} </div></mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="phone">
+    <mat-header-cell *matHeaderCellDef>phone</mat-header-cell>
+    <mat-cell *matCellDef="let contact"><div> {{contact.phone}} </div></mat-cell>
+  </ng-container>
+   <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+   <mat-row *matRowDef="let row; columns: columnsToDisplay;" (click)=getRecord(row)></mat-row>
+ </mat-table> 
+
+ <form autocomplete="on" [formGroup]="contactForm" (ngSubmit)="addUser()">
+   <mat-form-field apparence="legacy"> <br>
+     <mat-label>firstname</mat-label>  <br>
+     <input matInput [(ngModel)]="newUser.firstName" type="text" formControlName="firstName" name="newfirstName" id="newfirstName" placeholder="firstName" class="form-control"> 
+   </mat-form-field> <br> 
+ 
+   <mat-form-field apparence="legacy"> <br>
+    <mat-label>lastname</mat-label>  <br>
+    <input matInput [(ngModel)]="newUser.lastName" type="text" name="newlastName" formControlName="lastName" id="newlastName" placeholder="lastName" class="form-control"> 
+   </mat-form-field> <br>
+
+   <mat-form-field apparence="legacy"> <br>
+   <mat-label>email</mat-label>  <br>
+    <input matInput [(ngModel)]="newUser.email" type="email" name="newemail" formControlName="email" id="newemail" placeholder="email" class="form-control"> 
+  </mat-form-field> <br>
+  <mat-form-field apparence="legacy"> <br>
+    <mat-label>phone</mat-label> <br>
+    <input matInput [(ngModel)]="newUser.phone" type="number" name="newphone" formControlName="phone" id="newphone" placeholder="phone" class="form-control"> 
+  </mat-form-field> <br>
+ <button mat-button type="submit">Add User</button>
+</form>
+ 
